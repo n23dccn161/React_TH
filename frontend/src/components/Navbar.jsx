@@ -1,6 +1,17 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { logout } from '../api/authApi';
 
 function Navbar() {
+  const { user, logoutUser } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    logoutUser();
+    navigate('/');
+  };
+
   return (
     <header className="navbar">
       <NavLink to="/" className="logo">
@@ -16,10 +27,24 @@ function Navbar() {
         <NavLink to="/blog" className={({ isActive }) => isActive ? 'active' : ''}>
           Blog
         </NavLink>
+        {user && (
+          <NavLink to="/manage-blogs" className={({ isActive }) => isActive ? 'active' : ''}>
+            Quản lý Blog
+          </NavLink>
+        )}
       </nav>
       <div className="auth-buttons">
-        <button className="btn-login">Login</button>
-        <button className="btn-register">Register</button>
+        {user ? (
+          <div className="navbar-user">
+            <span className="user-email">{user.email}</span>
+            <button className="btn-login" onClick={handleLogout}>Logout</button>
+          </div>
+        ) : (
+          <>
+            <button className="btn-login" onClick={() => navigate('/login')}>Login</button>
+            <button className="btn-register" onClick={() => navigate('/register')}>Register</button>
+          </>
+        )}
       </div>
     </header>
   );

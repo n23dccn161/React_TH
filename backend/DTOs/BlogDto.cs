@@ -5,6 +5,7 @@ namespace backend.DTOs
         public required string Title { get; set; }
         public required string Content { get; set; }
         public required string Category { get; set; }
+        public string? AuthorEmail { get; set; }
     }
 
     public class BlogResponseDto
@@ -14,5 +15,6 @@ namespace backend.DTOs
         public required string Content { get; set; }
         public required string Category { get; set; }
         public required DateTime CreatedAt { get; set; }
+        public string? AuthorEmail { get; set; }
     }
 }

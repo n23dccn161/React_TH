@@ -7,5 +7,6 @@ namespace backend.Models
         public required string Content { get; set; }
         public required string Category { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public string? AuthorEmail { get; set; }
     }
 }
