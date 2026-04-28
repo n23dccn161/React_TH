@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet add *)",
+      "PowerShell(Invoke-RestMethod \"https://api.nuget.org/v3-flatcontainer/pomelo.entityframeworkcore.mysql/index.json\" | Select-Object -ExpandProperty versions | Select-Object -Last 10)"
+    ]
+  }
+}
